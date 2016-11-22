@@ -1,0 +1,55 @@
+<?php
+
+$title = 'Adicionar novo Cliente';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+//Adiciona o estilo ao nome do formulário
+$nome = $form->get('nome');
+$nome->setAttribute('class', 'form-control');
+$nome->setAttribute('placeholder', 'Nome Cliente');
+
+// Adiciona o estilo a funcao do formulário
+$funcao = $form->get('funcao');
+$funcao->setAttribute('class', 'form-control');
+$funcao->setAttribute('placeholder', 'Função');
+
+// Adiciona o estilo a idade do formulário
+$idade = $form->get('idade');
+$idade->setAttribute('class', 'form-control');
+$idade->setAttribute('placeholder', 'Idade');
+
+// Altera o estilo do botão de submit
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+?>
+
+<?php
+$form->setAttribute('action', $this->url('clientes', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+<div class="form-group">
+    <?= $this->formLabel($nome) ?>
+    <?= $this->formElement($nome) ?>
+    <?= $this->formElementErrors()->render($nome, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($funcao) ?>
+    <?= $this->formElement($funcao) ?>
+    <?= $this->formElementErrors()->render($funcao, ['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($idade) ?>
+    <?= $this->formElement($idade) ?>
+    <?= $this->formElementErrors()->render($idade, ['class' => 'help-block']) ?>
+</div>
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

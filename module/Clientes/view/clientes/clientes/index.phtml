@@ -1,0 +1,29 @@
+<?php
+
+$title = 'Gerenciamento de Clientes';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('clientes', ['action' => 'add']) ?>">Adicionar novo cliente</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Nome</th>
+    <th>Função</th>
+    <th>Idade</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($clientes as $cliente) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($cliente->nome) ?></td>
+        <td><?= $this->escapeHtml($cliente->funcao) ?></td>
+        <td><?= $this->escapeHtml($cliente->idade) ?></td>
+        <td>
+            <a href="<?= $this->url('clientes', ['action' => 'edit', 'id' => $cliente->id]) ?>">Edit</a>
+            <a href="<?= $this->url('clientes', ['action' => 'delete', 'id' => $cliente->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>
